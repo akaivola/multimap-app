@@ -3,7 +3,7 @@
     "name": "multimap-app",
     "description": "No description",
     "slug": "multimap-app",
-    "sdkVersion": "34.0.0",
+    "sdkVersion": "35.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
@@ -16,6 +16,10 @@
     },
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "platforms": [
+      "android",
+      "ios"
+    ]
   }
 }

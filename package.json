@@ -6,9 +6,9 @@
   "private": true,
   "main": "main.js",
   "dependencies": {
-    "expo": "^34.0.3",
+    "create-react-class": "15.6.3",
+    "expo": "^35.0.0",
     "react": "16.8.3",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
-    "create-react-class": "15.6.3"
+    "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz"
   }
 }
