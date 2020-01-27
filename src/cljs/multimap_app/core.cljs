@@ -16,17 +16,27 @@
 (def layout (r/adapt-react-class (oget components "Layout")))
 (def text (r/adapt-react-class (oget components "Text")))
 (def button (r/adapt-react-class (oget components "Button")))
+(def modal (r/adapt-react-class (oget components "Modal")))
 
 (def mapping (oget eva "mapping"))
 (def light-theme (oget eva "light"))
 
-(def Alert (.-Alert ReactNative))
-
-(defn alert [title]
-  (.alert Alert title))
+(defn modal-component [show-modal]
+  [layout {:level "3"
+           :on-press #(swap! show-modal not)
+           :style
+           {:justify-content "center"
+            :align-items "center"
+            :width 256
+            :padding 16}}
+   [text "Hello from Kitty Modal"]
+   [button {:style {:margin 20}
+            :on-press #(swap! show-modal not)}
+    "dismiss"]])
 
 (defn app-root []
-  (let [greeting (subscribe [:get-greeting])]
+  (let [greeting (subscribe [:get-greeting])
+        show-modal (r/atom false)]
     (fn []
       [application-provider {:mapping mapping :theme light-theme}
        [layout {:style {:margin 20}}
@@ -34,8 +44,11 @@
                :category "h1"} @greeting]
         [text {:style {:font-size 20 :color "red" :text-align "center" :margin-bottom 20}}
          "This is some profound text"]
-        [button {:on-press #(alert "HELLO!")}
-          "press me, if you dare"]]])))
+        [button {:on-press #(do (println "press") (swap! show-modal not))}
+         "press me, if you dare"]
+        [modal {:visible @show-modal
+                :backdrop-style {:background-color "rgba(0, 0, 0, 0.5)"}}
+         [modal-component show-modal]]]])))
 
 (defn init []
   (dispatch-sync [:initialize-db])
