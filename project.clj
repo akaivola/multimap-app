@@ -20,9 +20,9 @@
             ["with-profile" "prod" "cljsbuild" "once" "main"]}
   :profiles {:dev  {:dependencies [[figwheel-sidecar "0.5.18"]
                                    [cider/piggieback "0.4.1"]]
-                    :source-paths ["src/clj" "src/cljs" "env/dev"]
+                    :source-paths ["src/cljs" "env/dev"]
                     :cljsbuild    {:builds [{:id           "main"
-                                             :source-paths ["src/clj" "src/cljs" "env/dev"]
+                                             :source-paths ["src/cljs" "env/dev"]
                                              :figwheel     true
                                              :compiler     {:output-to     "target/expo/index.js"
                                                             :main          "env.expo.main"
@@ -31,7 +31,7 @@
                                                             :target        :nodejs}}]}
                     :repl-options {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}}
              :prod {:cljsbuild {:builds [{:id           "main"
-                                          :source-paths ["src/clj" "src/cljs" "env/prod"]
+                                          :source-paths ["src/cljs" "env/prod"]
                                           :compiler     {:output-to          "main.js"
                                                          :main               "env.expo.main"
                                                          :output-dir         "target/expo"
