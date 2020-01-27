@@ -1,20 +1,25 @@
 (ns multimap-app.core
-    (:require [reagent.core :as r :refer [atom]]
-              [re-frame.core :refer [subscribe dispatch dispatch-sync]]
-              [oops.core :refer [ocall]]
-              [multimap-app.handlers]
-              [multimap-app.subs]))
+  (:require
+   ;;[multimap-app.macros :refer-macros [import-js]]
+   [reagent.core :as r]
+   [re-frame.core :refer [subscribe dispatch dispatch-sync]]
+   [oops.core :refer [oget ocall]]
+   [multimap-app.handlers]
+   [multimap-app.subs]))
 
 (def ReactNative (js/require "react-native"))
 (def expo (js/require "expo"))
-(def AtExpo (js/require "@expo/vector-icons"))
-(def ionicons (.-Ionicons AtExpo))
-(def ic (r/adapt-react-class ionicons))
+(def components (js/require "@ui-kitten/components"))
+(def eva (js/require "@eva-design/eva"))
 
-(def text (r/adapt-react-class (.-Text ReactNative)))
-(def view (r/adapt-react-class (.-View ReactNative)))
-(def image (r/adapt-react-class (.-Image ReactNative)))
-(def touchable-highlight (r/adapt-react-class (.-TouchableHighlight ReactNative)))
+(def application-provider (r/adapt-react-class (oget components "ApplicationProvider")))
+(def layout (r/adapt-react-class (oget components "Layout")))
+(def text (r/adapt-react-class (oget components "Text")))
+(def button (r/adapt-react-class (oget components "Button")))
+
+(def mapping (oget eva "mapping"))
+(def light-theme (oget eva "light"))
+
 (def Alert (.-Alert ReactNative))
 
 (defn alert [title]
@@ -23,14 +28,14 @@
 (defn app-root []
   (let [greeting (subscribe [:get-greeting])]
     (fn []
-      [view {:style {:flex-direction "column" :margin 40 :align-items "center"}}
-       [text {:style {:font-size 30 :font-weight "100" :margin-bottom 20 :text-align "center"}} @greeting]
-       [text {:style
-              {:font-size 20 :color "red" :text-align "center" :margin-bottom 20}}
-        "This is some deep text"]
-       [touchable-highlight {:style {:background-color "#999" :padding 10 :border-radius 5}
-                             :on-press #(alert "HELLO!")}
-        [text {:style {:color "white" :text-align "center" :font-weight "bold"}} "press me, if you dare"]]])))
+      [application-provider {:mapping mapping :theme light-theme}
+       [layout {:style {:margin 20}}
+        [text {:style {:margin-bottom 20 :margin-top 50 :text-align "center"}
+               :category "h1"} @greeting]
+        [text {:style {:font-size 20 :color "red" :text-align "center" :margin-bottom 20}}
+         "This is some profound text"]
+        [button {:on-press #(alert "HELLO!")}
+          "press me, if you dare"]]])))
 
 (defn init []
   (dispatch-sync [:initialize-db])
