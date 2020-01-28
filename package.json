@@ -12,8 +12,10 @@
     "@ui-kitten/eva-icons": "^4.3.2",
     "create-react-class": "15.6.3",
     "expo": "^35.0.0",
+    "expokit": "35.0.4",
     "react": "16.8.3",
     "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
-    "react-native-svg": "^11.0.1"
+    "react-native-svg": "^11.0.1",
+    "react-native-unimodules": "^0.6.0"
   }
 }

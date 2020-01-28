@@ -15,11 +15,25 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "ARKMultimapp",
+      "publishBundlePath": "ios/multimap-app/Supporting/shell-app.bundle",
+      "publishManifestPath": "ios/multimap-app/Supporting/shell-app-manifest.json"
     },
     "platforms": [
       "android",
       "ios"
-    ]
+    ],
+    "isDetached": true,
+    "detach": {
+      "iosExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/ios-v2.13.0-sdk35.0.0-a30ebc9b-3db4-42f4-b677-e468076baf18.tar.gz",
+      "androidExpoViewUrl": "https://s3.amazonaws.com/exp-exponent-view-code/android-v119-sdk35.0.0-6758e9de-1e10-40f8-863d-ec8972895cf1.tar.gz"
+    },
+    "scheme": "expbdabfb059c1e461184d2a44966202a8b",
+    "android": {
+      "package": "org.akaivola.multimap",
+      "publishBundlePath": "android/app/src/main/assets/shell-app.bundle",
+      "publishManifestPath": "android/app/src/main/assets/shell-app-manifest.json"
+    }
   }
 }
