@@ -109,6 +109,8 @@ dependencies {
 
   // Our dependencies
   implementation "com.android.support:appcompat-v7:$supportLibVersion"
+  // Mapbox GL
+  implementation project(':@react-native-mapbox-gl_maps')
 
   // Our dependencies from ExpoView
   // DON'T ADD ANYTHING HERE THAT ISN'T IN EXPOVIEW. ONLY COPY THINGS FROM EXPOVIEW TO HERE.
@@ -167,22 +169,22 @@ dependencies {
   testImplementation 'com.android.support.test:runner:1.0.2-alpha1'
   testImplementation 'com.android.support.test:rules:1.0.2-alpha1'
 
-  
+
   implementation('host.exp.exponent:expoview:35.0.0@aar') {
     transitive = true
     exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     exclude group: 'com.squareup.okhttp3', module: 'okhttp-urlconnection'
   }
-  
 
 
-  
+
+
   api 'org.webkit:android-jsc:r245459' // needs to be before react-native
   api 'com.facebook.react:react-native:33.0.0'
-  
 
 
-  
+
+
   addUnimodulesDependencies([
       modulesPaths : [
         '../../node_modules'
@@ -198,7 +200,7 @@ dependencies {
         // from auto-generated BasePackageList.java
       ]
   ])
-  
+
 }
 
 // This has to be down here for some reason
